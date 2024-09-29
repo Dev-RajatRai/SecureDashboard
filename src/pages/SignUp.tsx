@@ -4,7 +4,7 @@ import { register } from "../services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../store/authSlice";
 import InputField from "../components/InputField";
-import { RootState } from "../store/store"; // Import RootState for TypeScript types
+import { RootState } from "../store/store";
 import Card from "../components/Card";
 
 const SignUp = () => {
@@ -14,10 +14,9 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const token = useSelector((state: RootState) => state.auth.token); // Get the token from Redux store
+  const token = useSelector((state: RootState) => state.auth.token);
 
   useEffect(() => {
-    // Redirect to dashboard if already logged in
     if (token) {
       navigate("/dashboard");
     }
@@ -40,7 +39,7 @@ const SignUp = () => {
       setError("Passwords do not match.");
       return false;
     }
-    setError(""); // Clear any previous errors
+    setError("");
     return true;
   };
 
@@ -48,7 +47,7 @@ const SignUp = () => {
     e.preventDefault();
     setError("");
 
-    if (!validateForm()) return; // If validation fails, do not proceed
+    if (!validateForm()) return;
 
     try {
       const { data } = await register(email, password);
@@ -69,7 +68,6 @@ const SignUp = () => {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {error && <p className="text-red-500">{error}</p>}{" "}
-            {/* Display Error */}
             <div className="space-y-2">
               <InputField
                 type="email"

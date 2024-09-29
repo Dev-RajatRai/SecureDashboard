@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getUserById } from "../services/api"; // Assume this is the API function to fetch a user by ID
+import { getUserById } from "../services/api";
 import Card from "../components/Card";
 
 const UserDetail = () => {
-  const { userId } = useParams<{ userId: string }>(); // Get userId from route params
+  const { userId } = useParams<{ userId: string }>();
   const [user, setUser] = useState<any>(null);
   const [error, setError] = useState("");
   const fetchUser = async () => {

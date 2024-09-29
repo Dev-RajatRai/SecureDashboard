@@ -38,7 +38,7 @@ const SignIn = () => {
       setError("Password must be at least 6 characters long.");
       return false;
     }
-    setError(""); // Clear error if validation passes
+    setError("");
     return true;
   };
 
@@ -46,7 +46,7 @@ const SignIn = () => {
     e.preventDefault();
 
     if (!validateForm()) {
-      return; // Do not proceed if validation fails
+      return;
     }
 
     try {
@@ -66,7 +66,6 @@ const SignIn = () => {
           <h2 className="text-center text-2xl font-bold">Sign In</h2>
           <form onSubmit={handleSubmit}>
             {error && <p className="text-red-500 mb-4">{error}</p>}{" "}
-            {/* Error Message */}
             <div className="mb-4">
               <InputField
                 type="email"

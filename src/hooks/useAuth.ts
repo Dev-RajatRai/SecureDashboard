@@ -16,17 +16,14 @@ const useAuth = (): UseAuthReturn => {
   const token = useSelector((state: RootState) => state.auth.token);
 
   const isAuthenticated = Boolean(token);
-
-  // Handles login by storing the token in Redux state
   const login = (token: string) => {
     dispatch(setToken(token));
-    navigate("/dashboard"); // Redirect to dashboard after successful login
+    navigate("/dashboard");
   };
 
-  // Handles logout by clearing the token and navigating to login page
   const logout = () => {
     dispatch(clearToken());
-    navigate("/"); // Redirect to login page after logout
+    navigate("/");
   };
 
   return {

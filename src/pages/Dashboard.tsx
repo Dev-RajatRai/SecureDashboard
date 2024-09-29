@@ -3,8 +3,7 @@ import { getUsers } from "../services/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearToken } from "../store/authSlice";
-import Card from "../components/Card"; // Importing the reusable Card component
-import { RootState } from "../store/store";
+import Card from "../components/Card";
 
 interface User {
   id: number;
@@ -18,8 +17,8 @@ const Dashboard = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [page, setPage] = useState(1); // Pagination state
-  const [totalPages, setTotalPages] = useState(1); // Total pages for pagination
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const token = useSelector((state: any) => state.auth.token);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,9 +26,9 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const { data } = await getUsers(page); // Include page parameter
+        const { data } = await getUsers(page);
         setUsers(data.data);
-        setTotalPages(data.total_pages); // Set total pages for pagination
+        setTotalPages(data.total_pages);
         setLoading(false);
       } catch (err) {
         setError("Failed to fetch users. Please try again.");
@@ -84,7 +83,6 @@ const Dashboard = () => {
             ))}
           </div>
         )}{" "}
-        {/* Pagination controls */}
         <div className="flex justify-between items-center pt-4">
           <button
             onClick={() => setPage(page - 1)}
